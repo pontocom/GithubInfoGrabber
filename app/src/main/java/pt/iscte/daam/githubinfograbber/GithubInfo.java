@@ -23,9 +23,6 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GithubInfo extends AppCompatActivity {
     protected String githubUser;
     protected GithubUser user;
