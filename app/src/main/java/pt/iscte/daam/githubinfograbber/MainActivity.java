@@ -16,11 +16,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         etGithubUser = (EditText) findViewById(R.id.etGithubUser);
+        etGithubUser.setText("");
     }
 
+    /**
+     * Opens a new activity to grab the gitub user details
+     */
     public void getGithubInfo(View v) {
         Intent i = new Intent(MainActivity.this, GithubInfo.class);
         i.putExtra("GITHUBUSER", etGithubUser.getText().toString());
+        etGithubUser.setText("");
         startActivity(i);
     }
 }
