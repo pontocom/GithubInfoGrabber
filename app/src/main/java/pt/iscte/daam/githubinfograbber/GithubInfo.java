@@ -17,6 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -118,7 +121,9 @@ public class GithubInfo extends AppCompatActivity {
         tvPublicRepos.setText(user.getGithubPublicRepos());
         tvPublicURL.setText(user.getGithubPublicURL());
 
+        // -> This uses the UniversalImageLoader
         // Get the remote image and add it to the imageView
+        /*
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.loadImage(user.getGithubAvatar(), new SimpleImageLoadingListener() {
             @Override
@@ -126,7 +131,20 @@ public class GithubInfo extends AppCompatActivity {
                 ivAvatar.setImageBitmap(loadedImage);
                 pDialog.dismiss();
             }
-        });
+        });*/
+
+        // -> Now using the Glide library
+        Glide
+                .with(this)
+                .load(user.getGithubAvatar())
+                .asBitmap()
+                .into(new BitmapImageViewTarget(ivAvatar) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        super.onResourceReady(resource, glideAnimation);
+                        pDialog.dismiss();
+                    }
+                });
     }
 
     /**
