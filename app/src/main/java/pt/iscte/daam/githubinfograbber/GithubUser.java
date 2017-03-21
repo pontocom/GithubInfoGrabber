@@ -4,6 +4,9 @@ package pt.iscte.daam.githubinfograbber;
  * Created by cserrao on 15/03/2017.
  */
 
+/**
+ * Used to hold information for the Github user
+ */
 public class GithubUser {
     protected String githubUser, gitRealName, githubPublicURL, githubPublicRepos, githubLocation, githubEmail, githubAvatar;
 
